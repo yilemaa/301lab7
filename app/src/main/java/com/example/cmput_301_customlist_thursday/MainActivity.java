@@ -2,6 +2,7 @@ package com.example.cmput_301_customlist_thursday;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -65,7 +66,14 @@ public class MainActivity extends AppCompatActivity {
                 cityAdapter.clear();
             }
         });
-
+        // add a listener to the items in the list,
+        // so when the item is clicked, it switches to ShowActivity with the name of the city
+        cityList.setOnItemClickListener((parent, view, position, id) -> {
+            String cityName = cityAdapter.getItem(position);
+            Intent intent = new Intent(this, ShowActivity.class);
+            intent.putExtra("cityName", cityName);
+            startActivity(intent);
+        });
 
 
     }
